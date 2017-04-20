@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 
 class EventAdmin(models.Model):
 	#name = models.CharField(max_length=200
-	User = models.OneToOneField(user, on_delete=models.CASCADE, blank=True)
+	User = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
 	Phone = models.CharField(max_length=11)
 	Venue = models.CharField(max_length=100)
-	Category = models.ForeignKey(Categories)
+	Category = models.ForeignKey('Categories')
 	StartTime = models.DateTimeField('event start time')
 	EndTime = models.DateTimeField('event end time')
 	TicketCost = models.DecimalField(max_digits=7, decimal_places=2)
@@ -17,7 +17,7 @@ class EndUser(models.Model):
 	FirstName = models.CharField(max_length=50)
 	LastName = models.CharField(max_length=50)
 	Phone = models.CharField(max_length=11)
-	Email = models.EmailField(max_lenght=100)
+	Email = models.EmailField(max_length=100)
 	Password = models.CharField(max_length=50, blank=True)
 	Event = models.ForeignKey('EventAdmin')
 
