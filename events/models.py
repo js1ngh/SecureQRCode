@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import qrcode
 
 # Create your models here.
 
@@ -20,6 +21,17 @@ class EndUser(models.Model):
 	Email = models.EmailField(max_length=100)
 	Password = models.CharField(max_length=50, blank=True)
 	Event = models.ForeignKey('EventAdmin')
+
+	def generate_qrcode(self):
+		qr = qrcode.QRCode(
+			version=1,
+			error_correction=qrcode.constants.ERROR_CORRECT_L,
+			box_size=6,
+			border=0,
+		)
+		qr.add()
+		qr.make(fit=True)
+		img = qr.make_image(EMail)
 
 class Categories(models.Model):
 	Name = models.CharField(max_length=100)
